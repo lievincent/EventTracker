@@ -1,20 +1,9 @@
 import React, { Component } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
+import { FlatList, StyleSheet, Text, View, Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Button, Card } from "react-native-paper";
 import AsyncStorage from "@react-native-community/async-storage";
-
-const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
 
 export default class Favorite extends Component {
   constructor(props) {
@@ -38,7 +27,7 @@ export default class Favorite extends Component {
         console.log(this.state.nama);
       }
     } catch (e) {
-      // error reading value
+      console.log("getItem error");
     }
   }
 
@@ -110,7 +99,7 @@ export default class Favorite extends Component {
                   style={{ flexDirection: "row", justifyContent: "center" }}
                 >
                   <Button
-                    onPress={() =>
+                    onPress={() => {
                       this.props.navigation.navigate("Detail", {
                         imageParam: item.ImageSRC,
                         eventNameParam: item.EventName,
@@ -118,8 +107,8 @@ export default class Favorite extends Component {
                         entryParam: item.Entry,
                         moreInfoParam: item.moreInfo,
                         idParam: item.ID,
-                      })
-                    }
+                      });
+                    }}
                   >
                     Show Detail
                   </Button>

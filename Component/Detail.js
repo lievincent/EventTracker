@@ -7,7 +7,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
 
 export default class Detail extends Component {
   constructor(props) {
@@ -39,35 +38,35 @@ export default class Detail extends Component {
             break;
           }
         }
-      }
 
-      if (count === 0) {
-        tambahanArray.push({
-          ID: valueIdBaru,
-          EventName: valueNamaEvent,
-          Place: valuePlace,
-          Entry: valueEntry,
-          ImageSRC: valueGambar,
-          moreInfo: valueMore,
-        });
+        if (count === 0) {
+          tambahanArray.push({
+            ID: valueIdBaru,
+            EventName: valueNamaEvent,
+            Place: valuePlace,
+            Entry: valueEntry,
+            ImageSRC: valueGambar,
+            moreInfo: valueMore,
+          });
 
-        let newjsonObject = { namaUser: nama, favoriteIdArr: tambahanArray };
-        const jsonValueSet = JSON.stringify(newjsonObject);
-        await AsyncStorage.setItem("user", jsonValueSet);
+          let newjsonObject = { namaUser: nama, favoriteIdArr: tambahanArray };
+          const jsonValueSet = JSON.stringify(newjsonObject);
+          await AsyncStorage.setItem("user", jsonValueSet);
 
-        Alert.alert(
-          "Event Favorite",
-          "Success",
-          [{ text: "OK", onPress: () => console.log(tambahanArray) }],
-          { cancelable: false }
-        );
-      } else {
-        Alert.alert(
-          "Event Favorite",
-          "Event is already on your favorite list",
-          [{ text: "OK", onPress: () => console.log(tambahanArray) }],
-          { cancelable: false }
-        );
+          Alert.alert(
+            "Event Favorite",
+            "Success",
+            [{ text: "OK", onPress: () => console.log(tambahanArray) }],
+            { cancelable: false }
+          );
+        } else {
+          Alert.alert(
+            "Event Favorite",
+            "Event is already on your favorite list",
+            [{ text: "OK", onPress: () => console.log(tambahanArray) }],
+            { cancelable: false }
+          );
+        }
       }
     } catch (e) {
       // saving error
@@ -129,8 +128,7 @@ export default class Detail extends Component {
                 fontWeight: "bold",
               }}
             >
-              {" "}
-              More info :{" "}
+              More info :
             </Text>
             <Text style={styles.text}>{moreInfoParam}</Text>
           </View>

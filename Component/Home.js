@@ -139,8 +139,6 @@ export default class Home extends Component {
 
   render() {
     const { nameParam } = this.props.route.params;
-    const { viewType, sortType } = this.state;
-
     return (
       <View style={styles.container}>
         <StatusBar style="light" />
@@ -151,7 +149,7 @@ export default class Home extends Component {
           <View style={{ flexDirection: "row-reverse" }}>
             <TouchableOpacity
               onPress={() => {
-                this.getData, this.props.navigation.navigate("Favorite");
+                this.props.navigation.navigate("Favorite");
               }}
             >
               <FontAwesome
@@ -182,7 +180,7 @@ export default class Home extends Component {
           <Picker
             selectedValue={this.state.sortType}
             style={{ height: 50, width: 200, color: "black" }}
-            onValueChange={(itemValue, itemIndex) =>
+            onValueChange={(itemValue) =>
               this.setState(
                 { sortType: itemValue },
                 this.sortFunction(itemValue)

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Dimensions, Alert } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import FlatButton from "./Button";
 import { TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
 
 export default class Login extends Component {
   constructor(props) {
@@ -24,6 +23,7 @@ export default class Login extends Component {
       await AsyncStorage.setItem("user", jsonValue);
     } catch (e) {
       // saving error
+      console.log("storeData error");
     }
   };
 
@@ -41,7 +41,7 @@ export default class Login extends Component {
         this.storeData(value);
       }
     } catch (e) {
-      // error reading value
+      console.log("checkUser error");
     }
   };
 
@@ -73,10 +73,10 @@ export default class Login extends Component {
           text="NEXT"
           style={styles.favoriteButton}
           onPress={() => {
-            this.checkUser(this.state.Name),
-              this.props.navigation.navigate("Home", {
-                nameParam: this.state.Name,
-              });
+            this.checkUser(this.state.Name);
+            this.props.navigation.navigate("Home", {
+              nameParam: this.state.Name,
+            });
           }}
         ></FlatButton>
       </View>
